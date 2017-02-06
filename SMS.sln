@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Base", "SchoolManagementSystem.Base\SchoolManagementSystem.Base.csproj", "{4B923921-35B7-4E22-A887-48ED2E2CBD9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseSchema", "DatabaseSchema", "{8F314ED6-D4E9-4F02-8D14-4E31ED9BD8E4}"
+	ProjectSection(SolutionItems) = preProject
+		Schema_Feb_6.sql = Schema_Feb_6.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
