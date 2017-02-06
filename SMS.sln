@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem", "SchoolManagementSystem\SchoolManagementSystem.csproj", "{FCD5FA2C-D906-438A-94F0-04B2BA70CB02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Base", "SchoolManagementSystem.Base\SchoolManagementSystem.Base.csproj", "{4B923921-35B7-4E22-A887-48ED2E2CBD9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseSchema", "DatabaseSchema", "{8F314ED6-D4E9-4F02-8D14-4E31ED9BD8E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCD5FA2C-D906-438A-94F0-04B2BA70CB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD5FA2C-D906-438A-94F0-04B2BA70CB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD5FA2C-D906-438A-94F0-04B2BA70CB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD5FA2C-D906-438A-94F0-04B2BA70CB02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="AcademicYearId" />
+          </Key>
+          <Property Name="AcademicYearId" Type="int" Nullable="false" />
+          <Property Name="AcademicYear" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalUserAcademicInfo">
+          <Key>
+            <PropertyRef Name="ExternalUserAcademicInfoID" />
+          </Key>
+          <Property Name="ExternalUserAcademicInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalUserLoginID" Type="int" />
+          <Property Name="SchoolStandardId" Type="int" />
+          <Property Name="SchoolSectionId" Type="int" />
+          <Property Name="AcademicYearId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="int" />
+          <Property Name="LastUpdatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="SchoolStreamID" Type="int" />
+        </EntityType>
+        <EntityType Name="ExternalUserInfo">
+          <Key>
+            <PropertyRef Name="ExternalUserInfoID" />
+          </Key>
+          <Property Name="ExternalUserInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="Pin" Type="varchar" MaxLength="6" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExternalUserLogin">
+          <Key>
+            <PropertyRef Name="ExternalUserLoginID" />
+          </Key>
+          <Property Name="ExternalUserLoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalUserInfoID" Type="int" />
+          <Property Name="ExternalUserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Disabled" Type="bit" />
+          <Property Name="FailedLoginCount" Type="int" />
+          <Property Name="CurrentSuccesfulLogin" Type="datetime" />
+          <Property Name="LastSuccesfulLogin" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExternalUserLogin_UserGroup_Mapping">
+          <Key>
+            <PropertyRef Name="ExternalUserLogin_UserGroup_ID" />
+          </Key>
+          <Property Name="ExternalUserLogin_UserGroup_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalUserLoginID" Type="int" />
+          <Property Name="UserGroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="ExternalUserTransations">
+          <Key>
+            <PropertyRef Name="ExternalUserTransationsID" />
+          </Key>
+          <Property Name="ExternalUserTransationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalUserAcademicInfoID" Type="int" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="LastUpdatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="LastUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="FeeFrequency">
+          <Key>
+            <PropertyRef Name="FeeFrequencyId" />
+          </Key>
+          <Property Name="FeeFrequencyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Frequency" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FeeFrequencyGuid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeeTypes">
+          <Key>
+            <PropertyRef Name="FeeTypeId" />
+          </Key>
+          <Property Name="FeeTypeId" Type="int" Nullable="false" />
+          <Property Name="FeeTypeGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender" />
+          </Key>
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternalUser">
+          <Key>
+            <PropertyRef Name="InternalUserID" />
+          </Key>
+          <Property Name="InternalUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserGroupId" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Disabled" Type="bit" />
+          <Property Name="FailedLoginCount" Type="int" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="CurrentSuccesfulLogin" Type="datetime" />
+          <Property Name="LastSuccesfulLogin" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="NationalityId" />
+          </Key>
+          <Property Name="NationalityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Religion">
+          <Key>
+            <PropertyRef Name="ReligionId" />
+          </Key>
+          <Property Name="ReligionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Religion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolName" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Address1" Type="varchar" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="Pin" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SchoolFeeStructure">
+          <Key>
+            <PropertyRef Name="SchoolFeeStructureId" />
+          </Key>
+          <Property Name="SchoolFeeStructureId" Type="int" Nullable="false" />
+          <Property Name="SchoolFeeStructureGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="FeeTypeId" Type="int" Nullable="false" />
+          <Property Name="FeeFrequencyId" Type="int" Nullable="false" />
+          <Property Name="SchoolStandardID" Type="int" />
+          <Property Name="Amount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="50" />
+          <Property Name="AcademicYearId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="SchoolSection">
+          <Key>
+            <PropertyRef Name="SchoolSectionID" />
+          </Key>
+          <Property Name="SchoolSectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="SchoolID" Type="int" />
+        </EntityType>
+        <EntityType Name="SchoolStandard">
+          <Key>
+            <PropertyRef Name="SchoolStandardID" />
+          </Key>
+          <Property Name="SchoolStandardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" />
+          <Property Name="StandardID" Type="int" />
+        </EntityType>
+        <EntityType Name="SchoolStream">
+          <Key>
+            <PropertyRef Name="SchoolStreamID" />
+          </Key>
+          <Property Name="SchoolStreamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" />
+          <Property Name="StreamID" Type="int" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionId" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="Section" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Standard">
+          <Key>
+            <PropertyRef Name="StandardId" />
+          </Key>
+          <Property Name="StandardId" Type="int" Nullable="false" />
+          <Property Name="Standard" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stream">
+          <Key>
+            <PropertyRef Name="StreamId" />
+          </Key>
+          <Property Name="StreamId" Type="int" Nullable="false" />
+          <Property Name="Stream" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentAcademicDetails">
+          <Key>
+            <PropertyRef Name="StudentAcademicDetailsId" />
+          </Key>
+          <Property Name="StudentAcademicDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentAcademicDetailsGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SchoolStandardId" Type="int" Nullable="false" />
+          <Property Name="SchoolSectionId" Type="int" Nullable="false" />
+          <Property Name="AcademicYearId" Type="int" Nullable="false" />
+          <Property Name="SchoolStreamID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="StudentContacts">
+          <Key>
+            <PropertyRef Name="StudentContactId" />
+          </Key>
+          <Property Name="StudentContactId" Type="int" Nullable="false" />
+          <Property Name="StudentContactGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Landmark" Type="varchar" MaxLength="200" />
+          <Property Name="Area" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Zip" Type="int" Nullable="false" />
+          <Property Name="Contact1" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber1" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MobileNumber2" Type="varchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="StudentFeesDetails">
+          <Key>
+            <PropertyRef Name="StudentFeesDetailId" />
+          </Key>
+          <Property Name="StudentFeesDetailId" Type="int" Nullable="false" />
+          <Property Name="StudentFeesDetailGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SchoolFeeStructureId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="StudentHistory">
+          <Key>
+            <PropertyRef Name="StudentHistoryId" />
+          </Key>
+          <Property Name="StudentHistoryId" Type="int" Nullable="false" />
+          <Property Name="StudentHistoryGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="LastAttendedSchool" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastClassCompleted" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastAcedemicYear" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastAttendedBoard" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastClassResult" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="StudentGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Middlename" Type="varchar" MaxLength="50" />
+          <Property Name="Lastname" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="BloodGroup" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdentityNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Religion" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="MedicalHistory" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="MotherTongue" Type="varchar" MaxLength="50" />
+          <Property Name="IsDocumentSubmiited" Type="bit" Nullable="false" />
+          <Property Name="DocumentDetails" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="StudentParentInfo">
+          <Key>
+            <PropertyRef Name="StudentParentId" />
+          </Key>
+          <Property Name="StudentParentId" Type="int" Nullable="false" />
+          <Property Name="StudentParentGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="ParentType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Parentname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" />
+          <Property Name="Occupation" Type="varchar" MaxLength="50" />
+          <Property Name="AnnualIncome" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="DeletedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="UserGroupId" />
+          </Key>
+          <Property Name="UserGroupId" Type="int" Nullable="false" />
+          <Property Name="UserGroupName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsInternal" Type="bit" Nullable="false" />
+          <Property Name="IsExternal" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ExternalUserAcademicInfo_AcademicYear">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="AcademicYearId" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin1">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin2">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolSection">
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolSection">
+              <PropertyRef Name="SchoolSectionID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolStream">
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStream">
+              <PropertyRef Name="SchoolStreamID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolStreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserInfo_School_SchoolID">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="ExternalUserInfo" Type="Self.ExternalUserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="ExternalUserInfo">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID">
+          <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin_UserGroup_Mapping" Type="Self.ExternalUserLogin_UserGroup_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="UserGroupId" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin_UserGroup_Mapping">
+              <PropertyRef Name="UserGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin_UserGroup_Mapping" Type="Self.ExternalUserLogin_UserGroup_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin_UserGroup_Mapping">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID">
+          <End Role="ExternalUserInfo" Type="Self.ExternalUserInfo" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserInfo">
+              <PropertyRef Name="ExternalUserInfoID" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserTransations_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserTransations" Type="Self.ExternalUserTransations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserTransations">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserTransations_ExternalUserLogin1">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserTransations" Type="Self.ExternalUserTransations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserTransations">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternalUser_tblUserGroup_InternalUserGroupID">
+          <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="0..1" />
+          <End Role="InternalUser" Type="Self.InternalUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="UserGroupId" />
+            </Principal>
+            <Dependent Role="InternalUser">
+              <PropertyRef Name="UserGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_FeeFrequency">
+          <End Role="FeeFrequency" Type="Self.FeeFrequency" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeFrequency">
+              <PropertyRef Name="FeeFrequencyId" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="FeeFrequencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_FeeTypes">
+          <End Role="FeeTypes" Type="Self.FeeTypes" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeTypes">
+              <PropertyRef Name="FeeTypeId" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="FeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="0..1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolStandardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolSection_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolSection">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolSection_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SectionId" />
+            </Principal>
+            <Dependent Role="SchoolSection">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStandard_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolStandard">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStandard_Standard">
+          <End Role="Standard" Type="Self.Standard" Multiplicity="0..1" />
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standard">
+              <PropertyRef Name="StandardId" />
+            </Principal>
+            <Dependent Role="SchoolStandard">
+              <PropertyRef Name="StandardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStream_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolStream">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStream_Stream">
+          <End Role="Stream" Type="Self.Stream" Multiplicity="0..1" />
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stream">
+              <PropertyRef Name="StreamId" />
+            </Principal>
+            <Dependent Role="SchoolStream">
+              <PropertyRef Name="StreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_AcademicYear">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="AcademicYearId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolSection">
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolSection">
+              <PropertyRef Name="SchoolSectionID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolStream">
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="0..1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStream">
+              <PropertyRef Name="SchoolStreamID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolStreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentContacts_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentContacts" Type="Self.StudentContacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentContacts">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeesDetails_SchoolFeeStructure">
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="1" />
+          <End Role="StudentFeesDetails" Type="Self.StudentFeesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolFeeStructureId" />
+            </Principal>
+            <Dependent Role="StudentFeesDetails">
+              <PropertyRef Name="SchoolFeeStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeesDetails_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentFeesDetails" Type="Self.StudentFeesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentFeesDetails">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentHistory_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentHistory" Type="Self.StudentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentHistory">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentInfo_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="StudentInfo">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentParentInfo_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentParentInfo" Type="Self.StudentParentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentParentInfo">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSModelStoreContainer">
+          <EntitySet Name="AcademicYear" EntityType="Self.AcademicYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUserAcademicInfo" EntityType="Self.ExternalUserAcademicInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUserInfo" EntityType="Self.ExternalUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUserLogin" EntityType="Self.ExternalUserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUserLogin_UserGroup_Mapping" EntityType="Self.ExternalUserLogin_UserGroup_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUserTransations" EntityType="Self.ExternalUserTransations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeeFrequency" EntityType="Self.FeeFrequency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeeTypes" EntityType="Self.FeeTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternalUser" EntityType="Self.InternalUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nationality" EntityType="Self.Nationality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolFeeStructure" EntityType="Self.SchoolFeeStructure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolSection" EntityType="Self.SchoolSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolStandard" EntityType="Self.SchoolStandard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolStream" EntityType="Self.SchoolStream" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Standard" EntityType="Self.Standard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stream" EntityType="Self.Stream" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentContacts" EntityType="Self.StudentContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentFeesDetails" EntityType="Self.StudentFeesDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentHistory" EntityType="Self.StudentHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentParentInfo" EntityType="Self.StudentParentInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_AcademicYear" Association="Self.FK_ExternalUserAcademicInfo_AcademicYear">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin1" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin1">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin2" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin2">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolSection" Association="Self.FK_ExternalUserAcademicInfo_SchoolSection">
+            <End Role="SchoolSection" EntitySet="SchoolSection" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolStandard" Association="Self.FK_ExternalUserAcademicInfo_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandard" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolStream" Association="Self.FK_ExternalUserAcademicInfo_SchoolStream">
+            <End Role="SchoolStream" EntitySet="SchoolStream" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserInfo_School_SchoolID" Association="Self.FK_ExternalUserInfo_School_SchoolID">
+            <End Role="School" EntitySet="School" />
+            <End Role="ExternalUserInfo" EntitySet="ExternalUserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" Association="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="ExternalUserLogin_UserGroup_Mapping" EntitySet="ExternalUserLogin_UserGroup_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" Association="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserLogin_UserGroup_Mapping" EntitySet="ExternalUserLogin_UserGroup_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID" Association="Self.FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID">
+            <End Role="ExternalUserInfo" EntitySet="ExternalUserInfo" />
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserTransations_ExternalUserLogin" Association="Self.FK_ExternalUserTransations_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserTransations" EntitySet="ExternalUserTransations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserTransations_ExternalUserLogin1" Association="Self.FK_ExternalUserTransations_ExternalUserLogin1">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="ExternalUserTransations" EntitySet="ExternalUserTransations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternalUser_tblUserGroup_InternalUserGroupID" Association="Self.FK_InternalUser_tblUserGroup_InternalUserGroupID">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="InternalUser" EntitySet="InternalUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_FeeFrequency" Association="Self.FK_SchoolFeeStructure_FeeFrequency">
+            <End Role="FeeFrequency" EntitySet="FeeFrequency" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_FeeTypes" Association="Self.FK_SchoolFeeStructure_FeeTypes">
+            <End Role="FeeTypes" EntitySet="FeeTypes" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_School" Association="Self.FK_SchoolFeeStructure_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_SchoolStandard" Association="Self.FK_SchoolFeeStructure_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandard" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolSection_School" Association="Self.FK_SchoolSection_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="SchoolSection" EntitySet="SchoolSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolSection_Section" Association="Self.FK_SchoolSection_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="SchoolSection" EntitySet="SchoolSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStandard_School" Association="Self.FK_SchoolStandard_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="SchoolStandard" EntitySet="SchoolStandard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStandard_Standard" Association="Self.FK_SchoolStandard_Standard">
+            <End Role="Standard" EntitySet="Standard" />
+            <End Role="SchoolStandard" EntitySet="SchoolStandard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStream_School" Association="Self.FK_SchoolStream_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="SchoolStream" EntitySet="SchoolStream" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStream_Stream" Association="Self.FK_SchoolStream_Stream">
+            <End Role="Stream" EntitySet="Stream" />
+            <End Role="SchoolStream" EntitySet="SchoolStream" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_AcademicYear" Association="Self.FK_StudentAcademicDetails_AcademicYear">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolSection" Association="Self.FK_StudentAcademicDetails_SchoolSection">
+            <End Role="SchoolSection" EntitySet="SchoolSection" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolStandard" Association="Self.FK_StudentAcademicDetails_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandard" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolStream" Association="Self.FK_StudentAcademicDetails_SchoolStream">
+            <End Role="SchoolStream" EntitySet="SchoolStream" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_StudentInfo" Association="Self.FK_StudentAcademicDetails_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentContacts_StudentInfo" Association="Self.FK_StudentContacts_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentContacts" EntitySet="StudentContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeesDetails_SchoolFeeStructure" Association="Self.FK_StudentFeesDetails_SchoolFeeStructure">
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructure" />
+            <End Role="StudentFeesDetails" EntitySet="StudentFeesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeesDetails_StudentInfo" Association="Self.FK_StudentFeesDetails_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentFeesDetails" EntitySet="StudentFeesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentHistory_StudentInfo" Association="Self.FK_StudentHistory_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentHistory" EntitySet="StudentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentInfo_School" Association="Self.FK_StudentInfo_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentParentInfo_StudentInfo" Association="Self.FK_StudentParentInfo_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+            <End Role="StudentParentInfo" EntitySet="StudentParentInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="AcademicYearId" />
+          </Key>
+          <Property Name="AcademicYearId" Type="Int32" Nullable="false" />
+          <Property Name="AcademicYear1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes" Relationship="Self.FK_ExternalUserAcademicInfo_AcademicYear" FromRole="AcademicYear" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_AcademicYear" FromRole="AcademicYear" ToRole="StudentAcademicDetails" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalUserAcademicInfo">
+          <Key>
+            <PropertyRef Name="ExternalUserAcademicInfoID" />
+          </Key>
+          <Property Name="ExternalUserAcademicInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalUserLoginID" Type="Int32" />
+          <Property Name="SchoolStandardId" Type="Int32" />
+          <Property Name="SchoolSectionId" Type="Int32" />
+          <Property Name="AcademicYearId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Int32" />
+          <Property Name="LastUpdatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SchoolStreamID" Type="Int32" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK_ExternalUserAcademicInfo_AcademicYear" FromRole="ExternalUserAcademicInfo" ToRole="AcademicYear" />
+          <NavigationProperty Name="ExternalUserLogin" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin" FromRole="ExternalUserAcademicInfo" ToRole="ExternalUserLogin" />
+          <NavigationProperty Name="ExternalUserLogin1" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin1" FromRole="ExternalUserAcademicInfo" ToRole="ExternalUserLogin" />
+          <NavigationProperty Name="ExternalUserLogin2" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin2" FromRole="ExternalUserAcademicInfo" ToRole="ExternalUserLogin" />
+          <NavigationProperty Name="SchoolSection" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolSection" FromRole="ExternalUserAcademicInfo" ToRole="SchoolSection" />
+          <NavigationProperty Name="SchoolStandard" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolStandard" FromRole="ExternalUserAcademicInfo" ToRole="SchoolStandard" />
+          <NavigationProperty Name="SchoolStream" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolStream" FromRole="ExternalUserAcademicInfo" ToRole="SchoolStream" />
+        </EntityType>
+        <EntityType Name="ExternalUserInfo">
+          <Key>
+            <PropertyRef Name="ExternalUserInfoID" />
+          </Key>
+          <Property Name="ExternalUserInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="School" Relationship="Self.FK_ExternalUserInfo_School_SchoolID" FromRole="ExternalUserInfo" ToRole="School" />
+          <NavigationProperty Name="ExternalUserLogins" Relationship="Self.FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID" FromRole="ExternalUserInfo" ToRole="ExternalUserLogin" />
+        </EntityType>
+        <EntityType Name="ExternalUserLogin">
+          <Key>
+            <PropertyRef Name="ExternalUserLoginID" />
+          </Key>
+          <Property Name="ExternalUserLoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalUserInfoID" Type="Int32" />
+          <Property Name="ExternalUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Disabled" Type="Boolean" />
+          <Property Name="FailedLoginCount" Type="Int32" />
+          <Property Name="CurrentSuccesfulLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastSuccesfulLogin" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin" FromRole="ExternalUserLogin" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes1" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin1" FromRole="ExternalUserLogin" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes2" Relationship="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin2" FromRole="ExternalUserLogin" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="ExternalUserInfo" Relationship="Self.FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID" FromRole="ExternalUserLogin" ToRole="ExternalUserInfo" />
+          <NavigationProperty Name="ExternalUserLogin_UserGroup_Mapping" Relationship="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" FromRole="ExternalUserLogin" ToRole="ExternalUserLogin_UserGroup_Mapping" />
+          <NavigationProperty Name="ExternalUserTransations" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin" FromRole="ExternalUserLogin" ToRole="ExternalUserTransations" />
+          <NavigationProperty Name="ExternalUserTransations1" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin1" FromRole="ExternalUserLogin" ToRole="ExternalUserTransations" />
+        </EntityType>
+        <EntityType Name="ExternalUserLogin_UserGroup_Mapping">
+          <Key>
+            <PropertyRef Name="ExternalUserLogin_UserGroup_ID" />
+          </Key>
+          <Property Name="ExternalUserLogin_UserGroup_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalUserLoginID" Type="Int32" />
+          <Property Name="UserGroupId" Type="Int32" />
+          <NavigationProperty Name="ExternalUserLogin" Relationship="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" FromRole="ExternalUserLogin_UserGroup_Mapping" ToRole="ExternalUserLogin" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" FromRole="ExternalUserLogin_UserGroup_Mapping" ToRole="UserGroups" />
+        </EntityType>
+        <EntityType Name="ExternalUserTransation">
+          <Key>
+            <PropertyRef Name="ExternalUserTransationsID" />
+          </Key>
+          <Property Name="ExternalUserTransationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalUserAcademicInfoID" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="LastUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="ExternalUserLogin" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin" FromRole="ExternalUserTransations" ToRole="ExternalUserLogin" />
+          <NavigationProperty Name="ExternalUserLogin1" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin1" FromRole="ExternalUserTransations" ToRole="ExternalUserLogin" />
+        </EntityType>
+        <EntityType Name="FeeFrequency">
+          <Key>
+            <PropertyRef Name="FeeFrequencyId" />
+          </Key>
+          <Property Name="FeeFrequencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Frequency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FeeFrequencyGuid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="SchoolFeeStructures" Relationship="Self.FK_SchoolFeeStructure_FeeFrequency" FromRole="FeeFrequency" ToRole="SchoolFeeStructure" />
+        </EntityType>
+        <EntityType Name="FeeType">
+          <Key>
+            <PropertyRef Name="FeeTypeId" />
+          </Key>
+          <Property Name="FeeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FeeTypeGuid" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SchoolFeeStructures" Relationship="Self.FK_SchoolFeeStructure_FeeTypes" FromRole="FeeTypes" ToRole="SchoolFeeStructure" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender1" />
+          </Key>
+          <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternalUser">
+          <Key>
+            <PropertyRef Name="InternalUserID" />
+          </Key>
+          <Property Name="InternalUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Disabled" Type="Boolean" />
+          <Property Name="FailedLoginCount" Type="Int32" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentSuccesfulLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastSuccesfulLogin" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.FK_InternalUser_tblUserGroup_InternalUserGroupID" FromRole="InternalUser" ToRole="UserGroups" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="NationalityId" />
+          </Key>
+          <Property Name="NationalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nationality1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Religion">
+          <Key>
+            <PropertyRef Name="ReligionId" />
+          </Key>
+          <Property Name="ReligionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Religion1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="SchoolID" />
+          </Key>
+          <Property Name="SchoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pin" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="ExternalUserInfoes" Relationship="Self.FK_ExternalUserInfo_School_SchoolID" FromRole="School" ToRole="ExternalUserInfo" />
+          <NavigationProperty Name="SchoolFeeStructures" Relationship="Self.FK_SchoolFeeStructure_School" FromRole="School" ToRole="SchoolFeeStructure" />
+          <NavigationProperty Name="SchoolSections" Relationship="Self.FK_SchoolSection_School" FromRole="School" ToRole="SchoolSection" />
+          <NavigationProperty Name="SchoolStandards" Relationship="Self.FK_SchoolStandard_School" FromRole="School" ToRole="SchoolStandard" />
+          <NavigationProperty Name="SchoolStreams" Relationship="Self.FK_SchoolStream_School" FromRole="School" ToRole="SchoolStream" />
+          <NavigationProperty Name="StudentInfoes" Relationship="Self.FK_StudentInfo_School" FromRole="School" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="SchoolFeeStructure">
+          <Key>
+            <PropertyRef Name="SchoolFeeStructureId" />
+          </Key>
+          <Property Name="SchoolFeeStructureId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolFeeStructureGuid" Type="Guid" Nullable="false" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="FeeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FeeFrequencyId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolStandardID" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AcademicYearId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FeeFrequency" Relationship="Self.FK_SchoolFeeStructure_FeeFrequency" FromRole="SchoolFeeStructure" ToRole="FeeFrequency" />
+          <NavigationProperty Name="FeeType" Relationship="Self.FK_SchoolFeeStructure_FeeTypes" FromRole="SchoolFeeStructure" ToRole="FeeTypes" />
+          <NavigationProperty Name="School" Relationship="Self.FK_SchoolFeeStructure_School" FromRole="SchoolFeeStructure" ToRole="School" />
+          <NavigationProperty Name="SchoolStandard" Relationship="Self.FK_SchoolFeeStructure_SchoolStandard" FromRole="SchoolFeeStructure" ToRole="SchoolStandard" />
+          <NavigationProperty Name="StudentFeesDetails" Relationship="Self.FK_StudentFeesDetails_SchoolFeeStructure" FromRole="SchoolFeeStructure" ToRole="StudentFeesDetails" />
+        </EntityType>
+        <EntityType Name="SchoolSection">
+          <Key>
+            <PropertyRef Name="SchoolSectionID" />
+          </Key>
+          <Property Name="SchoolSectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="SchoolID" Type="Int32" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolSection" FromRole="SchoolSection" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="School" Relationship="Self.FK_SchoolSection_School" FromRole="SchoolSection" ToRole="School" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_SchoolSection_Section" FromRole="SchoolSection" ToRole="Section" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_SchoolSection" FromRole="SchoolSection" ToRole="StudentAcademicDetails" />
+        </EntityType>
+        <EntityType Name="SchoolStandard">
+          <Key>
+            <PropertyRef Name="SchoolStandardID" />
+          </Key>
+          <Property Name="SchoolStandardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" />
+          <Property Name="StandardID" Type="Int32" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolStandard" FromRole="SchoolStandard" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="School" Relationship="Self.FK_SchoolStandard_School" FromRole="SchoolStandard" ToRole="School" />
+          <NavigationProperty Name="SchoolFeeStructures" Relationship="Self.FK_SchoolFeeStructure_SchoolStandard" FromRole="SchoolStandard" ToRole="SchoolFeeStructure" />
+          <NavigationProperty Name="Standard" Relationship="Self.FK_SchoolStandard_Standard" FromRole="SchoolStandard" ToRole="Standard" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_SchoolStandard" FromRole="SchoolStandard" ToRole="StudentAcademicDetails" />
+        </EntityType>
+        <EntityType Name="SchoolStream">
+          <Key>
+            <PropertyRef Name="SchoolStreamID" />
+          </Key>
+          <Property Name="SchoolStreamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" />
+          <Property Name="StreamID" Type="Int32" />
+          <NavigationProperty Name="ExternalUserAcademicInfoes" Relationship="Self.FK_ExternalUserAcademicInfo_SchoolStream" FromRole="SchoolStream" ToRole="ExternalUserAcademicInfo" />
+          <NavigationProperty Name="School" Relationship="Self.FK_SchoolStream_School" FromRole="SchoolStream" ToRole="School" />
+          <NavigationProperty Name="Stream" Relationship="Self.FK_SchoolStream_Stream" FromRole="SchoolStream" ToRole="Stream" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_SchoolStream" FromRole="SchoolStream" ToRole="StudentAcademicDetails" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionId" />
+          </Key>
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="Section1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SchoolSections" Relationship="Self.FK_SchoolSection_Section" FromRole="Section" ToRole="SchoolSection" />
+        </EntityType>
+        <EntityType Name="Standard">
+          <Key>
+            <PropertyRef Name="StandardId" />
+          </Key>
+          <Property Name="StandardId" Type="Int32" Nullable="false" />
+          <Property Name="Standard1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SchoolStandards" Relationship="Self.FK_SchoolStandard_Standard" FromRole="Standard" ToRole="SchoolStandard" />
+        </EntityType>
+        <EntityType Name="Stream">
+          <Key>
+            <PropertyRef Name="StreamId" />
+          </Key>
+          <Property Name="StreamId" Type="Int32" Nullable="false" />
+          <Property Name="Stream1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SchoolStreams" Relationship="Self.FK_SchoolStream_Stream" FromRole="Stream" ToRole="SchoolStream" />
+        </EntityType>
+        <EntityType Name="StudentAcademicDetail">
+          <Key>
+            <PropertyRef Name="StudentAcademicDetailsId" />
+          </Key>
+          <Property Name="StudentAcademicDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentAcademicDetailsGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolStandardId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolSectionId" Type="Int32" Nullable="false" />
+          <Property Name="AcademicYearId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolStreamID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK_StudentAcademicDetails_AcademicYear" FromRole="StudentAcademicDetails" ToRole="AcademicYear" />
+          <NavigationProperty Name="SchoolSection" Relationship="Self.FK_StudentAcademicDetails_SchoolSection" FromRole="StudentAcademicDetails" ToRole="SchoolSection" />
+          <NavigationProperty Name="SchoolStandard" Relationship="Self.FK_StudentAcademicDetails_SchoolStandard" FromRole="StudentAcademicDetails" ToRole="SchoolStandard" />
+          <NavigationProperty Name="SchoolStream" Relationship="Self.FK_StudentAcademicDetails_SchoolStream" FromRole="StudentAcademicDetails" ToRole="SchoolStream" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentAcademicDetails_StudentInfo" FromRole="StudentAcademicDetails" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="StudentContact">
+          <Key>
+            <PropertyRef Name="StudentContactId" />
+          </Key>
+          <Property Name="StudentContactId" Type="Int32" Nullable="false" />
+          <Property Name="StudentContactGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Landmark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zip" Type="Int32" Nullable="false" />
+          <Property Name="Contact1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobileNumber2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentContacts_StudentInfo" FromRole="StudentContacts" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="StudentFeesDetail">
+          <Key>
+            <PropertyRef Name="StudentFeesDetailId" />
+          </Key>
+          <Property Name="StudentFeesDetailId" Type="Int32" Nullable="false" />
+          <Property Name="StudentFeesDetailGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolFeeStructureId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SchoolFeeStructure" Relationship="Self.FK_StudentFeesDetails_SchoolFeeStructure" FromRole="StudentFeesDetails" ToRole="SchoolFeeStructure" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentFeesDetails_StudentInfo" FromRole="StudentFeesDetails" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="StudentHistory">
+          <Key>
+            <PropertyRef Name="StudentHistoryId" />
+          </Key>
+          <Property Name="StudentHistoryId" Type="Int32" Nullable="false" />
+          <Property Name="StudentHistoryGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="LastAttendedSchool" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastClassCompleted" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastAcedemicYear" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastAttendedBoard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastClassResult" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentHistory_StudentInfo" FromRole="StudentHistory" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="StudentInfo">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="StudentGuid" Type="Guid" Nullable="false" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MedicalHistory" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MotherTongue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDocumentSubmiited" Type="Boolean" Nullable="false" />
+          <Property Name="DocumentDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="School" Relationship="Self.FK_StudentInfo_School" FromRole="StudentInfo" ToRole="School" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_StudentInfo" FromRole="StudentInfo" ToRole="StudentAcademicDetails" />
+          <NavigationProperty Name="StudentContacts" Relationship="Self.FK_StudentContacts_StudentInfo" FromRole="StudentInfo" ToRole="StudentContacts" />
+          <NavigationProperty Name="StudentFeesDetails" Relationship="Self.FK_StudentFeesDetails_StudentInfo" FromRole="StudentInfo" ToRole="StudentFeesDetails" />
+          <NavigationProperty Name="StudentHistories" Relationship="Self.FK_StudentHistory_StudentInfo" FromRole="StudentInfo" ToRole="StudentHistory" />
+          <NavigationProperty Name="StudentParentInfoes" Relationship="Self.FK_StudentParentInfo_StudentInfo" FromRole="StudentInfo" ToRole="StudentParentInfo" />
+        </EntityType>
+        <EntityType Name="StudentParentInfo">
+          <Key>
+            <PropertyRef Name="StudentParentId" />
+          </Key>
+          <Property Name="StudentParentId" Type="Int32" Nullable="false" />
+          <Property Name="StudentParentGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="ParentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Parentname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AnnualIncome" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentParentInfo_StudentInfo" FromRole="StudentParentInfo" ToRole="StudentInfo" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="UserGroupId" />
+          </Key>
+          <Property Name="UserGroupId" Type="Int32" Nullable="false" />
+          <Property Name="UserGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsInternal" Type="Boolean" Nullable="false" />
+          <Property Name="IsExternal" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ExternalUserLogin_UserGroup_Mapping" Relationship="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" FromRole="UserGroups" ToRole="ExternalUserLogin_UserGroup_Mapping" />
+          <NavigationProperty Name="InternalUsers" Relationship="Self.FK_InternalUser_tblUserGroup_InternalUserGroupID" FromRole="UserGroups" ToRole="InternalUser" />
+        </EntityType>
+        <Association Name="FK_ExternalUserAcademicInfo_AcademicYear">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="AcademicYearId" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_AcademicYear">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="AcademicYearId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin1">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_ExternalUserLogin2">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolSection">
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolSection">
+              <PropertyRef Name="SchoolSectionID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserAcademicInfo_SchoolStream">
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="0..1" />
+          <End Role="ExternalUserAcademicInfo" Type="Self.ExternalUserAcademicInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStream">
+              <PropertyRef Name="SchoolStreamID" />
+            </Principal>
+            <Dependent Role="ExternalUserAcademicInfo">
+              <PropertyRef Name="SchoolStreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserInfo_School_SchoolID">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="ExternalUserInfo" Type="Self.ExternalUserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="ExternalUserInfo">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID">
+          <End Role="ExternalUserInfo" Type="Self.ExternalUserInfo" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserInfo">
+              <PropertyRef Name="ExternalUserInfoID" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin_UserGroup_Mapping" Type="Self.ExternalUserLogin_UserGroup_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin_UserGroup_Mapping">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserTransations_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserTransations" Type="Self.ExternalUserTransation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserTransations">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserTransations_ExternalUserLogin1">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="ExternalUserTransations" Type="Self.ExternalUserTransation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="ExternalUserTransations">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID">
+          <End Role="UserGroups" Type="Self.UserGroup" Multiplicity="0..1" />
+          <End Role="ExternalUserLogin_UserGroup_Mapping" Type="Self.ExternalUserLogin_UserGroup_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="UserGroupId" />
+            </Principal>
+            <Dependent Role="ExternalUserLogin_UserGroup_Mapping">
+              <PropertyRef Name="UserGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_FeeFrequency">
+          <End Role="FeeFrequency" Type="Self.FeeFrequency" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeFrequency">
+              <PropertyRef Name="FeeFrequencyId" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="FeeFrequencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_FeeTypes">
+          <End Role="FeeTypes" Type="Self.FeeType" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeTypes">
+              <PropertyRef Name="FeeTypeId" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="FeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternalUser_tblUserGroup_InternalUserGroupID">
+          <End Role="UserGroups" Type="Self.UserGroup" Multiplicity="0..1" />
+          <End Role="InternalUser" Type="Self.InternalUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="UserGroupId" />
+            </Principal>
+            <Dependent Role="InternalUser">
+              <PropertyRef Name="UserGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolSection_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolSection">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStandard_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolStandard">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStream_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="SchoolStream">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentInfo_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolID" />
+            </Principal>
+            <Dependent Role="StudentInfo">
+              <PropertyRef Name="SchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolFeeStructure_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="0..1" />
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolStandardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeesDetails_SchoolFeeStructure">
+          <End Role="SchoolFeeStructure" Type="Self.SchoolFeeStructure" Multiplicity="1" />
+          <End Role="StudentFeesDetails" Type="Self.StudentFeesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolFeeStructure">
+              <PropertyRef Name="SchoolFeeStructureId" />
+            </Principal>
+            <Dependent Role="StudentFeesDetails">
+              <PropertyRef Name="SchoolFeeStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolSection_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1" />
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SectionId" />
+            </Principal>
+            <Dependent Role="SchoolSection">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolSection">
+          <End Role="SchoolSection" Type="Self.SchoolSection" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolSection">
+              <PropertyRef Name="SchoolSectionID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStandard_Standard">
+          <End Role="Standard" Type="Self.Standard" Multiplicity="0..1" />
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standard">
+              <PropertyRef Name="StandardId" />
+            </Principal>
+            <Dependent Role="SchoolStandard">
+              <PropertyRef Name="StandardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolStandard">
+          <End Role="SchoolStandard" Type="Self.SchoolStandard" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStandard">
+              <PropertyRef Name="SchoolStandardID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolStream_Stream">
+          <End Role="Stream" Type="Self.Stream" Multiplicity="0..1" />
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stream">
+              <PropertyRef Name="StreamId" />
+            </Principal>
+            <Dependent Role="SchoolStream">
+              <PropertyRef Name="StreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolStream">
+          <End Role="SchoolStream" Type="Self.SchoolStream" Multiplicity="0..1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolStream">
+              <PropertyRef Name="SchoolStreamID" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolStreamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentContacts_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentContacts" Type="Self.StudentContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentContacts">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeesDetails_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentFeesDetails" Type="Self.StudentFeesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentFeesDetails">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentHistory_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentHistory" Type="Self.StudentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentHistory">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentParentInfo_StudentInfo">
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+          <End Role="StudentParentInfo" Type="Self.StudentParentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentParentInfo">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicYears" EntityType="Self.AcademicYear" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="ExternalUserAcademicInfoes" EntityType="Self.ExternalUserAcademicInfo" />
+          <EntitySet Name="ExternalUserInfoes" EntityType="Self.ExternalUserInfo" />
+          <EntitySet Name="ExternalUserLogins" EntityType="Self.ExternalUserLogin" />
+          <EntitySet Name="ExternalUserLogin_UserGroup_Mapping" EntityType="Self.ExternalUserLogin_UserGroup_Mapping" />
+          <EntitySet Name="ExternalUserTransations" EntityType="Self.ExternalUserTransation" />
+          <EntitySet Name="FeeFrequencies" EntityType="Self.FeeFrequency" />
+          <EntitySet Name="FeeTypes" EntityType="Self.FeeType" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="InternalUsers" EntityType="Self.InternalUser" />
+          <EntitySet Name="Nationalities" EntityType="Self.Nationality" />
+          <EntitySet Name="Religions" EntityType="Self.Religion" />
+          <EntitySet Name="Schools" EntityType="Self.School" />
+          <EntitySet Name="SchoolFeeStructures" EntityType="Self.SchoolFeeStructure" />
+          <EntitySet Name="SchoolSections" EntityType="Self.SchoolSection" />
+          <EntitySet Name="SchoolStandards" EntityType="Self.SchoolStandard" />
+          <EntitySet Name="SchoolStreams" EntityType="Self.SchoolStream" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="Standards" EntityType="Self.Standard" />
+          <EntitySet Name="Streams" EntityType="Self.Stream" />
+          <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetail" />
+          <EntitySet Name="StudentContacts" EntityType="Self.StudentContact" />
+          <EntitySet Name="StudentFeesDetails" EntityType="Self.StudentFeesDetail" />
+          <EntitySet Name="StudentHistories" EntityType="Self.StudentHistory" />
+          <EntitySet Name="StudentInfoes" EntityType="Self.StudentInfo" />
+          <EntitySet Name="StudentParentInfoes" EntityType="Self.StudentParentInfo" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_AcademicYear" Association="Self.FK_ExternalUserAcademicInfo_AcademicYear">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_AcademicYear" Association="Self.FK_StudentAcademicDetails_AcademicYear">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin1" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin1">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_ExternalUserLogin2" Association="Self.FK_ExternalUserAcademicInfo_ExternalUserLogin2">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolSection" Association="Self.FK_ExternalUserAcademicInfo_SchoolSection">
+            <End Role="SchoolSection" EntitySet="SchoolSections" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolStandard" Association="Self.FK_ExternalUserAcademicInfo_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandards" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserAcademicInfo_SchoolStream" Association="Self.FK_ExternalUserAcademicInfo_SchoolStream">
+            <End Role="SchoolStream" EntitySet="SchoolStreams" />
+            <End Role="ExternalUserAcademicInfo" EntitySet="ExternalUserAcademicInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserInfo_School_SchoolID" Association="Self.FK_ExternalUserInfo_School_SchoolID">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="ExternalUserInfo" EntitySet="ExternalUserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID" Association="Self.FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID">
+            <End Role="ExternalUserInfo" EntitySet="ExternalUserInfoes" />
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" Association="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserLogin_UserGroup_Mapping" EntitySet="ExternalUserLogin_UserGroup_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserTransations_ExternalUserLogin" Association="Self.FK_ExternalUserTransations_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserTransations" EntitySet="ExternalUserTransations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserTransations_ExternalUserLogin1" Association="Self.FK_ExternalUserTransations_ExternalUserLogin1">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="ExternalUserTransations" EntitySet="ExternalUserTransations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" Association="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="ExternalUserLogin_UserGroup_Mapping" EntitySet="ExternalUserLogin_UserGroup_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_FeeFrequency" Association="Self.FK_SchoolFeeStructure_FeeFrequency">
+            <End Role="FeeFrequency" EntitySet="FeeFrequencies" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_FeeTypes" Association="Self.FK_SchoolFeeStructure_FeeTypes">
+            <End Role="FeeTypes" EntitySet="FeeTypes" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternalUser_tblUserGroup_InternalUserGroupID" Association="Self.FK_InternalUser_tblUserGroup_InternalUserGroupID">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="InternalUser" EntitySet="InternalUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_School" Association="Self.FK_SchoolFeeStructure_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolSection_School" Association="Self.FK_SchoolSection_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="SchoolSection" EntitySet="SchoolSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStandard_School" Association="Self.FK_SchoolStandard_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="SchoolStandard" EntitySet="SchoolStandards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStream_School" Association="Self.FK_SchoolStream_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="SchoolStream" EntitySet="SchoolStreams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentInfo_School" Association="Self.FK_StudentInfo_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolFeeStructure_SchoolStandard" Association="Self.FK_SchoolFeeStructure_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandards" />
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeesDetails_SchoolFeeStructure" Association="Self.FK_StudentFeesDetails_SchoolFeeStructure">
+            <End Role="SchoolFeeStructure" EntitySet="SchoolFeeStructures" />
+            <End Role="StudentFeesDetails" EntitySet="StudentFeesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolSection_Section" Association="Self.FK_SchoolSection_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="SchoolSection" EntitySet="SchoolSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolSection" Association="Self.FK_StudentAcademicDetails_SchoolSection">
+            <End Role="SchoolSection" EntitySet="SchoolSections" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStandard_Standard" Association="Self.FK_SchoolStandard_Standard">
+            <End Role="Standard" EntitySet="Standards" />
+            <End Role="SchoolStandard" EntitySet="SchoolStandards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolStandard" Association="Self.FK_StudentAcademicDetails_SchoolStandard">
+            <End Role="SchoolStandard" EntitySet="SchoolStandards" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolStream_Stream" Association="Self.FK_SchoolStream_Stream">
+            <End Role="Stream" EntitySet="Streams" />
+            <End Role="SchoolStream" EntitySet="SchoolStreams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolStream" Association="Self.FK_StudentAcademicDetails_SchoolStream">
+            <End Role="SchoolStream" EntitySet="SchoolStreams" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_StudentInfo" Association="Self.FK_StudentAcademicDetails_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentContacts_StudentInfo" Association="Self.FK_StudentContacts_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="StudentContacts" EntitySet="StudentContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeesDetails_StudentInfo" Association="Self.FK_StudentFeesDetails_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="StudentFeesDetails" EntitySet="StudentFeesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentHistory_StudentInfo" Association="Self.FK_StudentHistory_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="StudentHistory" EntitySet="StudentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentParentInfo_StudentInfo" Association="Self.FK_StudentParentInfo_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="StudentParentInfo" EntitySet="StudentParentInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSModelStoreContainer" CdmEntityContainer="SMSEntities">
+          <EntitySetMapping Name="AcademicYears">
+            <EntityTypeMapping TypeName="SMSModel.AcademicYear">
+              <MappingFragment StoreEntitySet="AcademicYear">
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="AcademicYear1" ColumnName="AcademicYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="SMSModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserAcademicInfoes">
+            <EntityTypeMapping TypeName="SMSModel.ExternalUserAcademicInfo">
+              <MappingFragment StoreEntitySet="ExternalUserAcademicInfo">
+                <ScalarProperty Name="ExternalUserAcademicInfoID" ColumnName="ExternalUserAcademicInfoID" />
+                <ScalarProperty Name="ExternalUserLoginID" ColumnName="ExternalUserLoginID" />
+                <ScalarProperty Name="SchoolStandardId" ColumnName="SchoolStandardId" />
+                <ScalarProperty Name="SchoolSectionId" ColumnName="SchoolSectionId" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="SchoolStreamID" ColumnName="SchoolStreamID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserInfoes">
+            <EntityTypeMapping TypeName="SMSModel.ExternalUserInfo">
+              <MappingFragment StoreEntitySet="ExternalUserInfo">
+                <ScalarProperty Name="ExternalUserInfoID" ColumnName="ExternalUserInfoID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserLogins">
+            <EntityTypeMapping TypeName="SMSModel.ExternalUserLogin">
+              <MappingFragment StoreEntitySet="ExternalUserLogin">
+                <ScalarProperty Name="ExternalUserLoginID" ColumnName="ExternalUserLoginID" />
+                <ScalarProperty Name="ExternalUserInfoID" ColumnName="ExternalUserInfoID" />
+                <ScalarProperty Name="ExternalUserName" ColumnName="ExternalUserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="FailedLoginCount" ColumnName="FailedLoginCount" />
+                <ScalarProperty Name="CurrentSuccesfulLogin" ColumnName="CurrentSuccesfulLogin" />
+                <ScalarProperty Name="LastSuccesfulLogin" ColumnName="LastSuccesfulLogin" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserLogin_UserGroup_Mapping">
+            <EntityTypeMapping TypeName="SMSModel.ExternalUserLogin_UserGroup_Mapping">
+              <MappingFragment StoreEntitySet="ExternalUserLogin_UserGroup_Mapping">
+                <ScalarProperty Name="ExternalUserLogin_UserGroup_ID" ColumnName="ExternalUserLogin_UserGroup_ID" />
+                <ScalarProperty Name="ExternalUserLoginID" ColumnName="ExternalUserLoginID" />
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserTransations">
+            <EntityTypeMapping TypeName="SMSModel.ExternalUserTransation">
+              <MappingFragment StoreEntitySet="ExternalUserTransations">
+                <ScalarProperty Name="ExternalUserTransationsID" ColumnName="ExternalUserTransationsID" />
+                <ScalarProperty Name="ExternalUserAcademicInfoID" ColumnName="ExternalUserAcademicInfoID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeeFrequencies">
+            <EntityTypeMapping TypeName="SMSModel.FeeFrequency">
+              <MappingFragment StoreEntitySet="FeeFrequency">
+                <ScalarProperty Name="FeeFrequencyId" ColumnName="FeeFrequencyId" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="FeeFrequencyGuid" ColumnName="FeeFrequencyGuid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeeTypes">
+            <EntityTypeMapping TypeName="SMSModel.FeeType">
+              <MappingFragment StoreEntitySet="FeeTypes">
+                <ScalarProperty Name="FeeTypeId" ColumnName="FeeTypeId" />
+                <ScalarProperty Name="FeeTypeGuid" ColumnName="FeeTypeGuid" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="SMSModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternalUsers">
+            <EntityTypeMapping TypeName="SMSModel.InternalUser">
+              <MappingFragment StoreEntitySet="InternalUser">
+                <ScalarProperty Name="InternalUserID" ColumnName="InternalUserID" />
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="FailedLoginCount" ColumnName="FailedLoginCount" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CurrentSuccesfulLogin" ColumnName="CurrentSuccesfulLogin" />
+                <ScalarProperty Name="LastSuccesfulLogin" ColumnName="LastSuccesfulLogin" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalities">
+            <EntityTypeMapping TypeName="SMSModel.Nationality">
+              <MappingFragment StoreEntitySet="Nationality">
+                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+                <ScalarProperty Name="Nationality1" ColumnName="Nationality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Religions">
+            <EntityTypeMapping TypeName="SMSModel.Religion">
+              <MappingFragment StoreEntitySet="Religion">
+                <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
+                <ScalarProperty Name="Religion1" ColumnName="Religion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="SMSModel.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolFeeStructures">
+            <EntityTypeMapping TypeName="SMSModel.SchoolFeeStructure">
+              <MappingFragment StoreEntitySet="SchoolFeeStructure">
+                <ScalarProperty Name="SchoolFeeStructureId" ColumnName="SchoolFeeStructureId" />
+                <ScalarProperty Name="SchoolFeeStructureGuid" ColumnName="SchoolFeeStructureGuid" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="FeeTypeId" ColumnName="FeeTypeId" />
+                <ScalarProperty Name="FeeFrequencyId" ColumnName="FeeFrequencyId" />
+                <ScalarProperty Name="SchoolStandardID" ColumnName="SchoolStandardID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolSections">
+            <EntityTypeMapping TypeName="SMSModel.SchoolSection">
+              <MappingFragment StoreEntitySet="SchoolSection">
+                <ScalarProperty Name="SchoolSectionID" ColumnName="SchoolSectionID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolStandards">
+            <EntityTypeMapping TypeName="SMSModel.SchoolStandard">
+              <MappingFragment StoreEntitySet="SchoolStandard">
+                <ScalarProperty Name="SchoolStandardID" ColumnName="SchoolStandardID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="StandardID" ColumnName="StandardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolStreams">
+            <EntityTypeMapping TypeName="SMSModel.SchoolStream">
+              <MappingFragment StoreEntitySet="SchoolStream">
+                <ScalarProperty Name="SchoolStreamID" ColumnName="SchoolStreamID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="SMSModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="Section1" ColumnName="Section" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Standards">
+            <EntityTypeMapping TypeName="SMSModel.Standard">
+              <MappingFragment StoreEntitySet="Standard">
+                <ScalarProperty Name="StandardId" ColumnName="StandardId" />
+                <ScalarProperty Name="Standard1" ColumnName="Standard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streams">
+            <EntityTypeMapping TypeName="SMSModel.Stream">
+              <MappingFragment StoreEntitySet="Stream">
+                <ScalarProperty Name="StreamId" ColumnName="StreamId" />
+                <ScalarProperty Name="Stream1" ColumnName="Stream" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAcademicDetails">
+            <EntityTypeMapping TypeName="SMSModel.StudentAcademicDetail">
+              <MappingFragment StoreEntitySet="StudentAcademicDetails">
+                <ScalarProperty Name="StudentAcademicDetailsId" ColumnName="StudentAcademicDetailsId" />
+                <ScalarProperty Name="StudentAcademicDetailsGuid" ColumnName="StudentAcademicDetailsGuid" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SchoolStandardId" ColumnName="SchoolStandardId" />
+                <ScalarProperty Name="SchoolSectionId" ColumnName="SchoolSectionId" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="SchoolStreamID" ColumnName="SchoolStreamID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentContacts">
+            <EntityTypeMapping TypeName="SMSModel.StudentContact">
+              <MappingFragment StoreEntitySet="StudentContacts">
+                <ScalarProperty Name="StudentContactId" ColumnName="StudentContactId" />
+                <ScalarProperty Name="StudentContactGuid" ColumnName="StudentContactGuid" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+                <ScalarProperty Name="MobileNumber1" ColumnName="MobileNumber1" />
+                <ScalarProperty Name="MobileNumber2" ColumnName="MobileNumber2" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentFeesDetails">
+            <EntityTypeMapping TypeName="SMSModel.StudentFeesDetail">
+              <MappingFragment StoreEntitySet="StudentFeesDetails">
+                <ScalarProperty Name="StudentFeesDetailId" ColumnName="StudentFeesDetailId" />
+                <ScalarProperty Name="StudentFeesDetailGuid" ColumnName="StudentFeesDetailGuid" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SchoolFeeStructureId" ColumnName="SchoolFeeStructureId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentHistories">
+            <EntityTypeMapping TypeName="SMSModel.StudentHistory">
+              <MappingFragment StoreEntitySet="StudentHistory">
+                <ScalarProperty Name="StudentHistoryId" ColumnName="StudentHistoryId" />
+                <ScalarProperty Name="StudentHistoryGuid" ColumnName="StudentHistoryGuid" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="LastAttendedSchool" ColumnName="LastAttendedSchool" />
+                <ScalarProperty Name="LastClassCompleted" ColumnName="LastClassCompleted" />
+                <ScalarProperty Name="LastAcedemicYear" ColumnName="LastAcedemicYear" />
+                <ScalarProperty Name="LastAttendedBoard" ColumnName="LastAttendedBoard" />
+                <ScalarProperty Name="LastClassResult" ColumnName="LastClassResult" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInfoes">
+            <EntityTypeMapping TypeName="SMSModel.StudentInfo">
+              <MappingFragment StoreEntitySet="StudentInfo">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="StudentGuid" ColumnName="StudentGuid" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="MotherTongue" ColumnName="MotherTongue" />
+                <ScalarProperty Name="IsDocumentSubmiited" ColumnName="IsDocumentSubmiited" />
+                <ScalarProperty Name="DocumentDetails" ColumnName="DocumentDetails" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentParentInfoes">
+            <EntityTypeMapping TypeName="SMSModel.StudentParentInfo">
+              <MappingFragment StoreEntitySet="StudentParentInfo">
+                <ScalarProperty Name="StudentParentId" ColumnName="StudentParentId" />
+                <ScalarProperty Name="StudentParentGuid" ColumnName="StudentParentGuid" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ParentType" ColumnName="ParentType" />
+                <ScalarProperty Name="Parentname" ColumnName="Parentname" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="AnnualIncome" ColumnName="AnnualIncome" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="SMSModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+                <ScalarProperty Name="UserGroupName" ColumnName="UserGroupName" />
+                <ScalarProperty Name="IsInternal" ColumnName="IsInternal" />
+                <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83a8f92d46ea4c8ca7cbbd5dc776a3e5" Name="Diagram1">
+        <EntityTypeShape EntityType="SMSModel.AcademicYear" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.ExternalUserAcademicInfo" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.ExternalUserInfo" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.ExternalUserLogin" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.ExternalUserLogin_UserGroup_Mapping" Width="1.5" PointX="10.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.ExternalUserTransation" Width="1.5" PointX="7.5" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.FeeFrequency" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.FeeType" Width="1.5" PointX="0.75" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Gender" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.InternalUser" Width="1.5" PointX="10.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Nationality" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Religion" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.School" Width="1.5" PointX="0.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.SchoolFeeStructure" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.SchoolSection" Width="1.5" PointX="6" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.SchoolStandard" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.SchoolStream" Width="1.5" PointX="6" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Section" Width="1.5" PointX="3.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Standard" Width="1.5" PointX="0.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.Stream" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentAcademicDetail" Width="1.5" PointX="8.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentContact" Width="1.5" PointX="5.25" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentFeesDetail" Width="1.5" PointX="8.25" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentHistory" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentInfo" Width="1.5" PointX="3" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.StudentParentInfo" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSModel.UserGroup" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_AcademicYear" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentAcademicDetails_AcademicYear" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_ExternalUserLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_ExternalUserLogin1" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_ExternalUserLogin2" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_SchoolSection" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_SchoolStandard" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserAcademicInfo_SchoolStream" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserInfo_School_SchoolID" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserLogin_ExternalUserInfo_ExternalUserInfoID" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserTransations_ExternalUserLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserTransations_ExternalUserLogin1" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolFeeStructure_FeeFrequency" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolFeeStructure_FeeTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_InternalUser_tblUserGroup_InternalUserGroupID" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolFeeStructure_School" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolSection_School" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolStandard_School" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolStream_School" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentInfo_School" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolFeeStructure_SchoolStandard" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentFeesDetails_SchoolFeeStructure" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolSection_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentAcademicDetails_SchoolSection" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolStandard_Standard" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentAcademicDetails_SchoolStandard" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_SchoolStream_Stream" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentAcademicDetails_SchoolStream" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentAcademicDetails_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentContacts_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentFeesDetails_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentHistory_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSModel.FK_StudentParentInfo_StudentInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
