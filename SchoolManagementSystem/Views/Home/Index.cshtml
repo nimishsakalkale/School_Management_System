@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+Register School : @Html.ActionLink("For reigster your school, Please click Here", "Index", "School")
+<br />
+Already Register School Login : @Html.ActionLink("For already registered school.", "AdminLogin", "AdminLogin")
+<br />
