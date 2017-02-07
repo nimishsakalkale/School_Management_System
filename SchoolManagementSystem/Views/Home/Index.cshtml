@@ -12,7 +12,31 @@
     </section>
 }
 
-Register School : @Html.ActionLink("For reigster your school, Please click Here", "Index", "School")
-<br />
-Already Register School Login : @Html.ActionLink("For already registered school.", "AdminLogin", "AdminLogin")
-<br />
+@using (Html.BeginForm("Login", "Home"))
+{
+<table>
+    <tr>
+        <td>
+            UserName :
+        </td>
+        <td>
+            @Html.TextBox("userName")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Password : 
+        </td>
+        <td>
+            @Html.TextBox("password")
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Login" />
+        </td>
+    </tr>
+</table>
+ 
+
+}
