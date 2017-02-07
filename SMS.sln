@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseSchema", "DatabaseS
 		Schema_Feb_6.sql = Schema_Feb_6.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Tests", "SchoolManagementSystem.Tests\SchoolManagementSystem.Tests.csproj", "{EA2DFB0D-B4A6-45C8-A5A6-E5DFC4E4C322}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B923921-35B7-4E22-A887-48ED2E2CBD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2DFB0D-B4A6-45C8-A5A6-E5DFC4E4C322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2DFB0D-B4A6-45C8-A5A6-E5DFC4E4C322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2DFB0D-B4A6-45C8-A5A6-E5DFC4E4C322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2DFB0D-B4A6-45C8-A5A6-E5DFC4E4C322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
