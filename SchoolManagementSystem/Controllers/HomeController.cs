@@ -9,6 +9,7 @@ namespace SchoolManagementSystem.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        //Teset
         public ActionResult Index()
         {
             return View();
