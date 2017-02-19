@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SchoolManagementSystem.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller //Controller
     {
         public ActionResult Index()
         {
