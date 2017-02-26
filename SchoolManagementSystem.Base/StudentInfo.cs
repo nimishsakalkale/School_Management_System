@@ -25,7 +25,6 @@ namespace SchoolManagementSystem.Base
         }
     
         public int StudentId { get; set; }
-        public System.Guid StudentGuid { get; set; }
         public int SchoolID { get; set; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
@@ -38,15 +37,14 @@ namespace SchoolManagementSystem.Base
         public string IdentityNumber { get; set; }
         public string Religion { get; set; }
         public string Category { get; set; }
-        public string MedicalHistory { get; set; }
         public byte[] Photo { get; set; }
         public string MotherTongue { get; set; }
-        public bool IsDocumentSubmiited { get; set; }
-        public string DocumentDetails { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
+        public Nullable<int> ExternalUserLoginID { get; set; }
     
+        public virtual ExternalUserLogin ExternalUserLogin { get; set; }
         public virtual School School { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }

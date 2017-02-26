@@ -1,4 +1,6 @@
-﻿@{
+﻿@using SchoolManagementSystem.Base
+@model LoginCredentials
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -20,7 +22,7 @@
             UserName :
         </td>
         <td>
-            @Html.TextBox("userName")
+            @Html.TextBoxFor(m => m.Username)
         </td>
     </tr>
     <tr>
@@ -28,7 +30,7 @@
             Password : 
         </td>
         <td>
-            @Html.TextBox("password")
+           <input type="password" name="Password" id="Password" />
         </td>
     </tr>
     <tr>

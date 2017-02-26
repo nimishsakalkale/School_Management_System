@@ -82,19 +82,10 @@
     <Compile Include="AcademicYear.cs">
       <DependentUpon>SchoolDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminLogin.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>SchoolDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DataAccess\DataAccess.cs" />
-    <Compile Include="DataAccess\DA_ExternalUser.cs" />
-    <Compile Include="DataAccess\DA_School.cs" />
-    <Compile Include="DataAccess\DA_SchoolSection.cs" />
-    <Compile Include="DataAccess\DA_SchoolStandard.cs" />
-    <Compile Include="DataAccess\DA_SchoolStream.cs" />
-    <Compile Include="DataAccess\DA_Student.cs" />
-    <Compile Include="DataAccess\DA_UserGroup.cs" />
+    <Compile Include="DataAccess\DA_Login.cs" />
     <Compile Include="ExternalUserAcademicInfo.cs">
       <DependentUpon>SchoolDatabase.tt</DependentUpon>
     </Compile>
@@ -122,6 +113,16 @@
     <Compile Include="InternalUser.cs">
       <DependentUpon>SchoolDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginCredentials.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DA_ExternalUser.cs" />
+    <Compile Include="DataAccess\DA_School.cs" />
+    <Compile Include="DataAccess\DA_SchoolSection.cs" />
+    <Compile Include="DataAccess\DA_SchoolStandard.cs" />
+    <Compile Include="DataAccess\DA_SchoolStream.cs" />
+    <Compile Include="DataAccess\DA_Student.cs" />
+    <Compile Include="DataAccess\DA_UserGroup.cs" />
     <Compile Include="Nationality.cs">
       <DependentUpon>SchoolDatabase.tt</DependentUpon>
     </Compile>
@@ -191,17 +192,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="SchoolDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SchoolDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="SchoolDatabase.edmx.diagram">
       <DependentUpon>SchoolDatabase.edmx</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BusinessRules\" />
+    <Folder Include="Models\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SchoolDatabase.Context.tt">
@@ -214,12 +220,6 @@
       <DependentUpon>SchoolDatabase.edmx</DependentUpon>
       <LastGenOutput>SchoolDatabase.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessRules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

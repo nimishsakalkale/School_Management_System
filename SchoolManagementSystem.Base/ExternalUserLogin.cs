@@ -23,6 +23,7 @@ namespace SchoolManagementSystem.Base
             this.ExternalUserLogin_UserGroup_Mapping = new HashSet<ExternalUserLogin_UserGroup_Mapping>();
             this.ExternalUserTransations = new HashSet<ExternalUserTransation>();
             this.ExternalUserTransations1 = new HashSet<ExternalUserTransation>();
+            this.StudentInfoes = new HashSet<StudentInfo>();
         }
     
         public int ExternalUserLoginID { get; set; }
@@ -48,5 +49,7 @@ namespace SchoolManagementSystem.Base
         public virtual ICollection<ExternalUserTransation> ExternalUserTransations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExternalUserTransation> ExternalUserTransations1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentInfo> StudentInfoes { get; set; }
     }
 }

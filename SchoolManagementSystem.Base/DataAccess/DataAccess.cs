@@ -44,38 +44,41 @@ namespace SchoolManagementSystem.Base.DataAccess
             }
         }
 
-        internal static bool IsValidAdminUser(AdminLogin modelToVerify)
-        {
-            bool result = false;
-            try
-            {
-                using (var smsDB = new SMSEntities())
-                {
-                    School school = smsDB.Schools.SingleOrDefault(m => m.SchoolID == modelToVerify.SchoolId);
+       
 
-                    if (school != null)
-                    {
-                        ExternalUserLogin externalUserLogin = smsDB.ExternalUserLogins.SingleOrDefault(m => m.ExternalUserName == modelToVerify.Username && m.Password == modelToVerify.Password);
 
-                        if (externalUserLogin != null)
-                        {
-                            if (DA_ExternalUser.CheckExternalUserGroupTypeIsAdmin(externalUserLogin.ExternalUserInfoID))
-                            {
-                                result = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        result = false;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return result;
-        }
+        //internal static bool IsValidAdminUser(AdminLogin modelToVerify)
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        using (var smsDB = new SMSEntities())
+        //        {
+        //            School school = smsDB.Schools.SingleOrDefault(m => m.SchoolID == modelToVerify.SchoolId);
+
+        //            if (school != null)
+        //            {
+        //                ExternalUserLogin externalUserLogin = smsDB.ExternalUserLogins.SingleOrDefault(m => m.ExternalUserName == modelToVerify.Username && m.Password == modelToVerify.Password);
+
+        //                if (externalUserLogin != null)
+        //                {
+        //                    if (DA_ExternalUser.CheckExternalUserGroupTypeIsAdmin(externalUserLogin.ExternalUserInfoID))
+        //                    {
+        //                        result = true;
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                result = false;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return result;
+        //}
     }
 }

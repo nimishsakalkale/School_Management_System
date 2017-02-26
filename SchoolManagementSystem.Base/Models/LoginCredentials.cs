@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementSystem.Base
 {
-    public class AdminLogin
+    public class LoginCredentials
     {
-        [Required]
-        [Display(Name = "School Id")]
-        public int SchoolId { get; set; }
+      
 
         [Required]
         [Display(Name = "Username")]
@@ -22,6 +20,5 @@ namespace SchoolManagementSystem.Base
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        public string Response { get; set; }
     }
 }

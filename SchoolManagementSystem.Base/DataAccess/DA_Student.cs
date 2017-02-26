@@ -28,6 +28,15 @@ namespace SchoolManagementSystem.Base.DataAccess
             }
         }
 
+        public static StudentInfo GetStudentInfoByLoginID(int loginID)
+        {
+            //create DBContext object
+            using (var smsDB = new SMSEntities())
+            {
+                return smsDB.StudentInfoes.SingleOrDefault(m => m.ExternalUserLoginID == loginID);
+            }
+        }
+
         public static int AddStudentInfo(StudentInfo studentInfo)
         {
             //create DBContext object

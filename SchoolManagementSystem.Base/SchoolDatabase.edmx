@@ -286,8 +286,7 @@
           <Key>
             <PropertyRef Name="StudentId" />
           </Key>
-          <Property Name="StudentId" Type="int" Nullable="false" />
-          <Property Name="StudentGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SchoolID" Type="int" Nullable="false" />
           <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Middlename" Type="varchar" MaxLength="50" />
@@ -300,14 +299,12 @@
           <Property Name="IdentityNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Religion" Type="varchar" MaxLength="50" />
           <Property Name="Category" Type="varchar" MaxLength="50" />
-          <Property Name="MedicalHistory" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Photo" Type="image" />
           <Property Name="MotherTongue" Type="varchar" MaxLength="50" />
-          <Property Name="IsDocumentSubmiited" Type="bit" Nullable="false" />
-          <Property Name="DocumentDetails" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="UpdateDate" Type="date" />
           <Property Name="DeletedDate" Type="date" />
+          <Property Name="ExternalUserLoginID" Type="int" />
         </EntityType>
         <EntityType Name="StudentParentInfo">
           <Key>
@@ -731,6 +728,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentInfo_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="StudentInfo">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentInfo_School">
           <End Role="School" Type="Self.School" Multiplicity="1" />
           <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
@@ -916,6 +925,10 @@
             <End Role="StudentInfo" EntitySet="StudentInfo" />
             <End Role="StudentHistory" EntitySet="StudentHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK_StudentInfo_ExternalUserLogin" Association="Self.FK_StudentInfo_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogin" />
+            <End Role="StudentInfo" EntitySet="StudentInfo" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentInfo_School" Association="Self.FK_StudentInfo_School">
             <End Role="School" EntitySet="School" />
             <End Role="StudentInfo" EntitySet="StudentInfo" />
@@ -1008,6 +1021,7 @@
           <NavigationProperty Name="ExternalUserLogin_UserGroup_Mapping" Relationship="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserLoginID" FromRole="ExternalUserLogin" ToRole="ExternalUserLogin_UserGroup_Mapping" />
           <NavigationProperty Name="ExternalUserTransations" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin" FromRole="ExternalUserLogin" ToRole="ExternalUserTransations" />
           <NavigationProperty Name="ExternalUserTransations1" Relationship="Self.FK_ExternalUserTransations_ExternalUserLogin1" FromRole="ExternalUserLogin" ToRole="ExternalUserTransations" />
+          <NavigationProperty Name="StudentInfoes" Relationship="Self.FK_StudentInfo_ExternalUserLogin" FromRole="ExternalUserLogin" ToRole="StudentInfo" />
         </EntityType>
         <EntityType Name="ExternalUserLogin_UserGroup_Mapping">
           <Key>
@@ -1272,8 +1286,7 @@
           <Key>
             <PropertyRef Name="StudentId" />
           </Key>
-          <Property Name="StudentId" Type="Int32" Nullable="false" />
-          <Property Name="StudentGuid" Type="Guid" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SchoolID" Type="Int32" Nullable="false" />
           <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1286,14 +1299,13 @@
           <Property Name="IdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MedicalHistory" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="MotherTongue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsDocumentSubmiited" Type="Boolean" Nullable="false" />
-          <Property Name="DocumentDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <Property Name="ExternalUserLoginID" Type="Int32" />
+          <NavigationProperty Name="ExternalUserLogin" Relationship="Self.FK_StudentInfo_ExternalUserLogin" FromRole="StudentInfo" ToRole="ExternalUserLogin" />
           <NavigationProperty Name="School" Relationship="Self.FK_StudentInfo_School" FromRole="StudentInfo" ToRole="School" />
           <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_StudentInfo" FromRole="StudentInfo" ToRole="StudentAcademicDetails" />
           <NavigationProperty Name="StudentContacts" Relationship="Self.FK_StudentContacts_StudentInfo" FromRole="StudentInfo" ToRole="StudentContacts" />
@@ -1483,6 +1495,18 @@
             </Principal>
             <Dependent Role="ExternalUserTransations">
               <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentInfo_ExternalUserLogin">
+          <End Role="ExternalUserLogin" Type="Self.ExternalUserLogin" Multiplicity="0..1" />
+          <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalUserLogin">
+              <PropertyRef Name="ExternalUserLoginID" />
+            </Principal>
+            <Dependent Role="StudentInfo">
+              <PropertyRef Name="ExternalUserLoginID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1830,6 +1854,10 @@
           <AssociationSet Name="FK_ExternalUserTransations_ExternalUserLogin1" Association="Self.FK_ExternalUserTransations_ExternalUserLogin1">
             <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
             <End Role="ExternalUserTransations" EntitySet="ExternalUserTransations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentInfo_ExternalUserLogin" Association="Self.FK_StudentInfo_ExternalUserLogin">
+            <End Role="ExternalUserLogin" EntitySet="ExternalUserLogins" />
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID" Association="Self.FK_ExternalUserLogin_ExternalUserGroup_ExternalUserGroupID">
             <End Role="UserGroups" EntitySet="UserGroups" />
@@ -2232,7 +2260,6 @@
             <EntityTypeMapping TypeName="SMSModel.StudentInfo">
               <MappingFragment StoreEntitySet="StudentInfo">
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="StudentGuid" ColumnName="StudentGuid" />
                 <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Middlename" ColumnName="Middlename" />
@@ -2245,14 +2272,12 @@
                 <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
                 <ScalarProperty Name="Religion" ColumnName="Religion" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="MedicalHistory" ColumnName="MedicalHistory" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="MotherTongue" ColumnName="MotherTongue" />
-                <ScalarProperty Name="IsDocumentSubmiited" ColumnName="IsDocumentSubmiited" />
-                <ScalarProperty Name="DocumentDetails" ColumnName="DocumentDetails" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ExternalUserLoginID" ColumnName="ExternalUserLoginID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,7 +19,19 @@ namespace SchoolManagementSystem.Base.DataAccess
                 return extenalUsersInfo.ToList();
             }
         }
+        public static UserGroup GetExternalUserGroup(int  externalUserLogInID)
+        {
+            using (var smsDB = new SMSEntities())
+            {
+                var tmp = smsDB.ExternalUserLogin_UserGroup_Mapping.FirstOrDefault(m => m.ExternalUserLoginID == externalUserLogInID);
+                if(tmp != null)
+                {
+                    return tmp.UserGroup;
+                }
 
+            }
+            return null;
+        }
         public static List<ExternalUserInfo> GetExternalUsersInfoBySchoolId(int schoolId)
         {
             using (var smsDB = new SMSEntities())
